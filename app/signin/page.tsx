@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -63,23 +63,39 @@ export default function SignIn() {
       });
     }
   };
+  const sliderImages = [
+    "/Swiper1.webp",
+    "/Swiper2.webp",
+    "/Swiper3.webp",
+    "/Swiper4.webp",
+    "/Swiper5.webp",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
+    }, 2500); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="min-h-screen flex mt-8 mb-12 pt-12 w-[90%] mx-auto ">
+    <div className="min-h-screen flex mt-8 mb-12 pt-12 w-[95%] mx-auto  gap-x-14">
       {" "}
-      <div className="hidden lg:flex lg:w-1/2 relative rounded-2xl overflow-hidden p-6">
+      <div className="hidden lg:flex lg:w-[40%] relative rounded-2xl overflow-hidden p-6">
         <Image
-          src="/Swiper2-fILBpLY9.webp"
+          src={sliderImages[currentIndex]}
           alt="Person looking out window at city skyline"
           fill
-          className="object-cover rounded-2xl"
+          className="object-cover rounded-2xl transition-opacity duration-700"
+          key={sliderImages[currentIndex]}
           priority
         />
       </div>
-      {/* Right side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8  bg-white rounded-2xl ">
-        <div className="w-full max-w-md">
-          {/* Header with Logo */}
+      <div className="w-full lg:w-[50%] flex items-center justify-center p-8  bg-white rounded-2xl ">
+        <div className="w-full ">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-[#a50050]  text-center mb-4">
               Welcome Back, Traveler!
@@ -87,7 +103,7 @@ export default function SignIn() {
             <p className="text-gray-600 text-center leading-relaxed">
               Your next adventure is just a click away. Log in to manage your
               bookings, access exclusive offers, and unlock the best deals on
-              hotels, flights, and more!
+              hotels, flights, and more!{" "}
             </p>
           </div>
 
@@ -173,7 +189,7 @@ export default function SignIn() {
                   id="email"
                   type="email"
                   placeholder="Email"
-                  className="pl-5 h-12 bg-white shadow focus:shadow-lg border-0 focus:border-0 focus:ring-0 placeholder:text-[#a50050]"
+                  className="pl-2 h-12 bg-white shadow focus:shadow-lg border-0 focus:border-0 focus:ring-0 placeholder:text-[#a50050]"
                   {...register("email")}
                 />
                 <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#a50050]" />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -11,10 +11,8 @@ import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Eye, EyeOff, Loader2, Mail, Lock, User, Phone } from "lucide-react";
+import { Eye, EyeOff, Loader2, Mail, User, Phone } from "lucide-react";
 import { toast } from "sonner";
 
 const signupSchema = z
@@ -73,25 +71,41 @@ export default function SignUp() {
       });
     }
   };
+  const sliderImages = [
+    "/Swiper1.webp",
+    "/Swiper2.webp",
+    "/Swiper3.webp",
+    "/Swiper4.webp",
+    "/Swiper5.webp",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
+    }, 2500); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
-      <div className="min-h-screen flex items-start mt-8 mb-12 pt-12 w-[90%] mx-auto">
-        <div className="hidden lg:flex lg:w-1/2 relative rounded-2xl overflow-hidden p-6 items-center justify-center">
-          <div className="relative w-[80%] h-96">
+      <div className="min-h-screen flex items-start mt-8 mb-12 pt-12 w-[95%] mx-auto">
+        <div className="hidden lg:flex  lg:w-[40%] relative rounded-2xl overflow-hidden p-6 items-center justify-center">
+          <div className="relative w-[80%] h-[32rem]">
             <Image
-              src="/Swiper4-BQ1QcWUB.webp"
+              src={sliderImages[currentIndex]}
               alt="Person looking out window at city skyline"
               fill
-              sizes="(max-width: 768px) 100vw, (min-width: 769px) 100vw"
-              style={{ objectFit: "cover" }}
-              className="object-cover rounded-2xl"
+              className="object-cover rounded-2xl transition-opacity duration-700"
+              key={sliderImages[currentIndex]}
               priority
             />
           </div>
         </div>
-        <div className="flex items-center justify-center w-full max-w-md mx-auto p-4">
-          <div className="w-full max-w-md">
+        <div className="flex items-center justify-center w-full lg:w-[80%] mx-auto">
+          <div className="w-full w-[100%]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -161,7 +175,7 @@ export default function SignUp() {
               {/* Divider */}
               <div className="relative mb-6">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-yellow-400"></div>
+                  <div className=" w-[89%] mx-auto border-t border-yellow-400"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-4 bg-gray-50 text-gray-500 font-medium">
@@ -170,164 +184,157 @@ export default function SignUp() {
                 </div>
               </div>
 
-              <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
-                <CardContent>
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {error && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Alert className="border-red-200 bg-red-50">
-                          <AlertDescription className="text-red-800">
-                            {error}
-                          </AlertDescription>
-                        </Alert>
-                      </motion.div>
-                    )}
-
-                    <div className="space-y-2">
-                      <div className="relative">
-                        <Input
-                          id="fullName"
-                          type="text"
-                          placeholder="Enter your full name"
-                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
-                          {...register("fullName")}
-                        />
-                        <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                      </div>
-                      {errors.fullName && (
-                        <p className="text-sm text-red-600">
-                          {errors.fullName.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      <div className="relative">
-                        <Input
-                          id="phoneNumber"
-                          type="tel"
-                          placeholder="Enter your phone number"
-                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
-                          {...register("phoneNumber")}
-                        />
-                        <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                      </div>
-                      {errors.phoneNumber && (
-                        <p className="text-sm text-red-600">
-                          {errors.phoneNumber.message}
-                        </p>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      <div className="relative">
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="Enter your email"
-                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
-                          {...register("email")}
-                        />
-                        <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                      </div>
-                      {errors.email && (
-                        <p className="text-sm text-red-600">
-                          {errors.email.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                        <Input
-                          id="password"
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Create a password"
-                          className="pl-10 pr-10 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
-                          {...register("password")}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-5 w-5" />
-                          ) : (
-                            <Eye className="h-5 w-5" />
-                          )}
-                        </button>
-                      </div>
-                      {errors.password && (
-                        <p className="text-sm text-red-600">
-                          {errors.password.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                        <Input
-                          id="confirmPassword"
-                          type={showConfirmPassword ? "text" : "password"}
-                          placeholder="Confirm your password"
-                          className="pl-10 pr-10 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
-                          {...register("confirmPassword")}
-                        />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowConfirmPassword(!showConfirmPassword)
-                          }
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                        >
-                          {showConfirmPassword ? (
-                            <EyeOff className="h-5 w-5" />
-                          ) : (
-                            <Eye className="h-5 w-5" />
-                          )}
-                        </button>
-                      </div>
-                      {errors.confirmPassword && (
-                        <p className="text-sm text-red-600">
-                          {errors.confirmPassword.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={isLoading}
-                      className="w-full bg-[#a50050] hover:bg-[#880e4f] text-white font-semibold transition-colors flex items-center justify-center"
-                    >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                          Creating Account...
-                        </>
-                      ) : (
-                        "Create Account"
-                      )}
-                    </Button>
-                  </form>
-
-                  <div className="mt-6 text-center">
-                    <p className="text-slate-600">
-                      Already have an account?{" "}
-                      <Link
-                        href="/signin"
-                        className="text-amber-600 hover:text-amber-700 font-semibold transition-colors"
-                      >
-                        Sign in
-                      </Link>
-                    </p>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Alert className="border-red-200 bg-red-50">
+                      <AlertDescription className="text-red-800">
+                        {error}
+                      </AlertDescription>
+                    </Alert>
+                  </motion.div>
+                )}
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="fullName"
+                      type="text"
+                      placeholder="Enter your full name"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("fullName")}
+                    />
+                    <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black-400" />
                   </div>
-                </CardContent>
-              </Card>
+                  {errors.fullName && (
+                    <p className="text-sm text-red-600">
+                      {errors.fullName.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("phoneNumber")}
+                    />
+                    <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black-400" />
+                  </div>
+                  {errors.phoneNumber && (
+                    <p className="text-sm text-red-600">
+                      {errors.phoneNumber.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("email")}
+                    />
+                    <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black-400" />
+                  </div>
+                  {errors.email && (
+                    <p className="text-sm text-red-600">
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Create a password"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("password")}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-black-400 hover:text-slate-600 transition-colors"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                  {errors.password && (
+                    <p className="text-sm text-red-600">
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder="Confirm your password"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("confirmPassword")}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-black-400 hover:text-black-600 transition-colors"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-5 w-5 text-black-400" />
+                      ) : (
+                        <Eye className="h-5 w-5 text-black-400" />
+                      )}
+                    </button>
+                  </div>
+                  {errors.confirmPassword && (
+                    <p className="text-sm text-red-600">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-[#a50050] hover:bg-[#880e4f] text-white font-semibold transition-colors flex items-center justify-center"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Creating Account...
+                    </>
+                  ) : (
+                    "Create Account"
+                  )}
+                </Button>
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="text-slate-600">
+                  Already have an account?{" "}
+                  <Link
+                    href="/signin"
+                    className="text-amber-600 hover:text-amber-700 font-semibold transition-colors"
+                  >
+                    Sign in
+                  </Link>
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
