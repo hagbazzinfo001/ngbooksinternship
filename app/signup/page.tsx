@@ -188,21 +188,15 @@ export default function SignUp() {
                     )}
 
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="fullName"
-                        className="text-slate-700 font-medium"
-                      >
-                        Full Name
-                      </Label>
                       <div className="relative">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <Input
                           id="fullName"
                           type="text"
                           placeholder="Enter your full name"
-                          className="pl-10 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
+                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
                           {...register("fullName")}
                         />
+                        <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                       </div>
                       {errors.fullName && (
                         <p className="text-sm text-red-600">
@@ -210,23 +204,16 @@ export default function SignUp() {
                         </p>
                       )}
                     </div>
-
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="phoneNumber"
-                        className="text-slate-700 font-medium"
-                      >
-                        Phone Number
-                      </Label>
                       <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <Input
                           id="phoneNumber"
                           type="tel"
                           placeholder="Enter your phone number"
-                          className="pl-10 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
+                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
                           {...register("phoneNumber")}
                         />
+                        <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                       </div>
                       {errors.phoneNumber && (
                         <p className="text-sm text-red-600">
@@ -234,23 +221,16 @@ export default function SignUp() {
                         </p>
                       )}
                     </div>
-
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="email"
-                        className="text-slate-700 font-medium"
-                      >
-                        Email Address
-                      </Label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <Input
                           id="email"
                           type="email"
                           placeholder="Enter your email"
-                          className="pl-10 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
+                          className="pl-5 h-12 border-slate-200 focus:border-amber-400 focus:ring-amber-400"
                           {...register("email")}
                         />
+                        <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                       </div>
                       {errors.email && (
                         <p className="text-sm text-red-600">
@@ -260,12 +240,6 @@ export default function SignUp() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="password"
-                        className="text-slate-700 font-medium"
-                      >
-                        Password
-                      </Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <Input
@@ -295,12 +269,6 @@ export default function SignUp() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="confirmPassword"
-                        className="text-slate-700 font-medium"
-                      >
-                        Confirm Password
-                      </Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <Input
@@ -360,25 +328,6 @@ export default function SignUp() {
                   </div>
                 </CardContent>
               </Card>
-
-              <div className="mt-8 text-center">
-                <p className="text-sm text-slate-500">
-                  By creating an account, you agree to our{" "}
-                  <Link
-                    href="/terms"
-                    className="text-amber-600 hover:text-amber-700"
-                  >
-                    Terms of Service
-                  </Link>{" "}
-                  and{" "}
-                  <Link
-                    href="/privacy"
-                    className="text-amber-600 hover:text-amber-700"
-                  >
-                    Privacy Policy
-                  </Link>
-                </p>
-              </div>
             </motion.div>
           </div>
         </div>

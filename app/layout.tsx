@@ -4,8 +4,7 @@ import { Inter } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Navigation from "@/components/Navigation";
 import { Toaster } from "@/components/ui/sonner";
-// import { Footer } from "react-day-picker";
-import Footer from "@/components/footer";
+ import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 

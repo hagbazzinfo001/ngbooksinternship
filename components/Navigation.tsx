@@ -27,7 +27,7 @@ export default function Navigation() {
             <Link href="/" className="flex items-center space-x-2">
               <Hotel className="h-8 w-8 text-[#a50050]" />
               <span className="text-xl font-bold text-[#a50050]">
-                NGBooks. <span className="h-8 w-8 text-amber-600 ">com</span>
+                NGBooks.<span className="h-8 w-8 text-amber-600 ">com</span>
               </span>
             </Link>
             <div className="hidden md:block text-gray-600 text-sm border-l border-gray-300 pl-6 hover:underline hover:text-[#a50050] underline-offset-4 decoration-2 decoration-[#a50050] transition-colors cursor-pointer">

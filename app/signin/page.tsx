@@ -168,9 +168,6 @@ export default function SignIn() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-[#a50050] font-medium">
-                Email
-              </Label>
               <div className="relative">
                 <Input
                   id="email"
@@ -187,9 +184,6 @@ export default function SignIn() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-[#a50050] font-medium">
-                Password
-              </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#a50050]" />
                 <Input

@@ -195,7 +195,6 @@ export default function Home() {
                 <Card className="h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-white to-slate-50">
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 bg-[#a50050] rounded-full flex items-center justify-center mx-auto mb-4">
-                      {" "}
                       <amenity.icon className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold text-slate-900 mb-3">
@@ -370,132 +369,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Footer */}
-      {/* <footer className="bg-slate-900 text-white py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="p-2 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg">
-                  <Hotel className="h-6 w-6 text-white" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-                    NGBooks
-                  </span>
-                  <span className="text-xs text-slate-400 -mt-1">Hotel</span>
-                </div>
-              </div>
-              <p className="text-slate-400 leading-relaxed">
-                Experience luxury redefined with world-class amenities and
-                exceptional service.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-slate-400">
-                <li>
-                  <Link
-                    href="/rooms"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Rooms & Suites
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/dining"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Dining
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/spa"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Spa & Wellness
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/events"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Events
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
-              <ul className="space-y-2 text-slate-400">
-                <li>
-                  <Link
-                    href="/concierge"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Concierge
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/business"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Business Center
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/fitness"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Fitness Center
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/transport"
-                    className="hover:text-amber-400 transition-colors"
-                  >
-                    Transportation
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <ul className="space-y-2 text-slate-400">
-                <li className="flex items-center">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  123 Luxury Avenue, City
-                </li>
-                <li className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2" />
-                  +1 (555) 123-4567
-                </li>
-                <li className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2" />
-                  info@ngbookshotel.com
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-400">
-            <p>
-              &copy; {new Date().getFullYear()} NGBooks Hotel. All rights
-              reserved. Luxury redefined.
-            </p>
-          </div>
-        </div>
-      </footer> */}
+ 
     </div>
   );
 }
