@@ -67,9 +67,8 @@ export default function Home() {
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
             Welcome to
-            <span className="block bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-              NGBooks Hotel
-            </span>
+            <br />
+            NGBooks Hotel
           </motion.h1>
 
           <motion.p
@@ -248,7 +247,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       {/* <section className="py-20 px-4 bg-slate-50"> */}
-      <section className="py-20 px-4" style={{ backgroundColor: "#a50050" }}>
+      <section className="py-20 px-4" style={{ backgroundColor: "#f8f4f1" }}>
         <div className="max-w-7xl mx-auto">
           <motion.div {...fadeInUp} className="text-center mb-16">
             {/* <Badge className="mb-4 bg-amber-100 text-amber-800 hover:bg-amber-200"> */}

@@ -36,7 +36,6 @@ export default function SignIn() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
-  const BASE_URL = "https://api.ngbookings.com/api";
 
   const onSubmit = async (data: LoginFormData) => {
     setError("");
@@ -142,7 +141,6 @@ export default function SignIn() {
               </svg>
             </Button>
           </div>
-          {/* Divider */}
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-yellow-400"></div>
@@ -154,7 +152,6 @@ export default function SignIn() {
             </div>
           </div>
 
-          {/* Login Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {error && (
               <motion.div

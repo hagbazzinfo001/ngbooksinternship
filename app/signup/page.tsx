@@ -164,7 +164,7 @@ export default function SignUp() {
                   <div className="w-full border-t border-yellow-400"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-white text-gray-500 font-medium">
+                  <span className="px-4 bg-gray-50 text-gray-500 font-medium">
                     or
                   </span>
                 </div>
