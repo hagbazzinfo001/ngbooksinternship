@@ -10,7 +10,6 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Eye, EyeOff, Loader2, Mail, Lock } from "lucide-react";
 import { toast } from "sonner";
@@ -70,9 +69,7 @@ export default function SignIn() {
     "/Swiper4.webp",
     "/Swiper5.webp",
   ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
@@ -80,10 +77,8 @@ export default function SignIn() {
 
     return () => clearInterval(interval);
   }, []);
-
   return (
     <div className="min-h-screen flex mt-8 mb-12 pt-12 w-[95%] mx-auto  gap-x-14">
-      {" "}
       <div className="hidden lg:flex lg:w-[40%] relative rounded-2xl overflow-hidden p-6">
         <Image
           src={sliderImages[currentIndex]}
@@ -94,7 +89,7 @@ export default function SignIn() {
           priority
         />
       </div>
-      <div className="w-full lg:w-[50%] flex items-center justify-center p-8  bg-white rounded-2xl ">
+      <div className="w-full lg:w-[50%] flex items-center justify-center bg-white rounded-2xl ">
         <div className="w-full ">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-[#a50050]  text-center mb-4">
@@ -106,7 +101,6 @@ export default function SignIn() {
               hotels, flights, and more!{" "}
             </p>
           </div>
-
           <div className="flex gap-3 mb-6 justify-center">
             <Button
               variant="outline"

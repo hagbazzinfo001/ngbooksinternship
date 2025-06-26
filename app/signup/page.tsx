@@ -91,20 +91,18 @@ export default function SignUp() {
 
   return (
     <>
-      <div className="min-h-screen flex items-start mt-8 mb-12 pt-12 w-[95%] mx-auto">
-        <div className="hidden lg:flex  lg:w-[40%] relative rounded-2xl overflow-hidden p-6 items-center justify-center">
-          <div className="relative w-[80%] h-[32rem]">
-            <Image
-              src={sliderImages[currentIndex]}
-              alt="Person looking out window at city skyline"
-              fill
-              className="object-cover rounded-2xl transition-opacity duration-700"
-              key={sliderImages[currentIndex]}
-              priority
-            />
-          </div>
+      <div className="min-h-screen flex items-start mt-8 mb-12 pt-12 w-[95%] mx-auto gap-x-20">
+        <div className="hidden lg:flex  lg:w-[44%] relative rounded-2xl overflow-hidden p-6 items-center justify-center h-[35rem]">
+          <Image
+            src={sliderImages[currentIndex]}
+            alt="Person looking out window at city skyline"
+            fill
+            className="object-cover rounded-2xl transition-opacity duration-700"
+            key={sliderImages[currentIndex]}
+            priority
+          />
         </div>
-        <div className="flex items-center justify-center w-full lg:w-[80%] mx-auto">
+        <div className="flex items-center justify-center w-full lg:w-[50%] mx-auto">
           <div className="w-full w-[100%]">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

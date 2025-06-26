@@ -1,43 +1,37 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X, User, LogOut, ChevronDown, Globe, Hotel } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signout } = useAuth();
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo and Email Section */}
           <div className="flex items-center space-x-6">
             <Link href="/" className="flex items-center space-x-2">
               <Hotel className="h-8 w-8 text-[#a50050]" />
               <span className="text-xl font-bold text-[#a50050]">
-                NGBooks.<span className="h-8 w-8 text-amber-600 ">com</span>
+                NGBooks.<span className="h-8 w-8 text-amber-600">com</span>
               </span>
             </Link>
-            <div className="hidden md:block text-gray-600 text-sm border-l border-gray-300 pl-6 hover:underline hover:text-[#a50050] underline-offset-4 decoration-2 decoration-[#a50050] transition-colors cursor-pointer">
+            <div className="hidden md:block text-gray-600 text-sm border-l border-gray-300 pl-6 hover:underline hover:text-[#a50050] underline-offset-4 decoration-2 decoration-[#a50050] transition-colors transition-[text-decoration-color] duration-300 cursor-pointer text-center">
               reservations@ngbookings.com
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
