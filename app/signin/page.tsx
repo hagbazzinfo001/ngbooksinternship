@@ -73,7 +73,7 @@ export default function SignIn() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
-    }, 2500); // Change image every 4 seconds
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -176,7 +176,6 @@ export default function SignIn() {
                 </Alert>
               </motion.div>
             )}
-
             <div className="space-y-2">
               <div className="relative">
                 <Input

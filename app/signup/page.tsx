@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -17,7 +16,8 @@ import { toast } from "sonner";
 
 const signupSchema = z
   .object({
-    fullName: z.string().min(2, "Full name must be at least 2 characters"),
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
     phoneNumber: z.string().min(10, "Please enter a valid phone number"),
     email: z.string().email("Please enter a valid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
@@ -27,16 +27,13 @@ const signupSchema = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   });
-
 type SignupFormData = z.infer<typeof signupSchema>;
-
 export default function SignUp() {
   const router = useRouter();
   const { signup, isLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
-
   const {
     register,
     handleSubmit,
@@ -48,8 +45,18 @@ export default function SignUp() {
   const onSubmit = async (data: SignupFormData) => {
     setError("");
 
+    const fullName = `${data.firstName.trim()} ${data.lastName.trim()}`;
+
+    const payload = {
+      fullName,
+      phoneNumber: data.phoneNumber,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+
     try {
-      const result = await signup(data);
+      const result = await signup(payload);
 
       if (result.success) {
         toast.success("Account created successfully!", {
@@ -71,6 +78,7 @@ export default function SignUp() {
       });
     }
   };
+
   const sliderImages = [
     "/Swiper1.webp",
     "/Swiper2.webp",
@@ -84,7 +92,7 @@ export default function SignUp() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
-    }, 2500); // Change image every 4 seconds
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -92,7 +100,7 @@ export default function SignUp() {
   return (
     <>
       <div className="min-h-screen flex items-start mt-8 mb-12 pt-12 w-[95%] mx-auto gap-x-20">
-        <div className="hidden lg:flex  lg:w-[44%] relative rounded-2xl overflow-hidden p-6 items-center justify-center h-[35rem]">
+        <div className="hidden lg:flex  lg:w-[44%] relative rounded-2xl overflow-hidden p-6 items-center justify-center h-[38rem]">
           <Image
             src={sliderImages[currentIndex]}
             alt="Person looking out window at city skyline"
@@ -145,7 +153,6 @@ export default function SignUp() {
                     />
                   </svg>
                 </Button>
-                {/* Facebook */}
                 <Button
                   variant="outline"
                   className="w-12 h-12 bg-gray-300 hover:bg-gray-50 rounded-full flex items-center justify-center shadow"
@@ -155,7 +162,6 @@ export default function SignUp() {
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 </Button>
-                {/* X/Twitter */}
                 <Button
                   variant="outline"
                   className="w-12 h-12 bg-gray-300 hover:bg-gray-50 rounded-full flex items-center justify-center shadow"
@@ -170,7 +176,6 @@ export default function SignUp() {
                   </svg>
                 </Button>
               </div>
-              {/* Divider */}
               <div className="relative mb-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className=" w-[89%] mx-auto border-t border-yellow-400"></div>
@@ -199,17 +204,34 @@ export default function SignUp() {
                 <div className="space-y-2">
                   <div className="relative">
                     <Input
-                      id="fullName"
+                      id="lastName"
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="Last name"
                       className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
-                      {...register("fullName")}
+                      {...register("lastName")}
                     />
                     <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black-400" />
                   </div>
-                  {errors.fullName && (
+                  {errors.lastName && (
                     <p className="text-sm text-red-600">
-                      {errors.fullName.message}
+                      {errors.lastName.message}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <div className="relative">
+                    <Input
+                      id="firstName"
+                      type="text"
+                      placeholder="First name"
+                      className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
+                      {...register("firstName")}
+                    />
+                    <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black-400" />
+                  </div>
+                  {errors.firstName && (
+                    <p className="text-sm text-red-600">
+                      {errors.firstName.message}
                     </p>
                   )}
                 </div>
@@ -218,7 +240,7 @@ export default function SignUp() {
                     <Input
                       id="phoneNumber"
                       type="tel"
-                      placeholder="Enter your phone number"
+                      placeholder="Phone number"
                       className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
                       {...register("phoneNumber")}
                     />
@@ -235,7 +257,7 @@ export default function SignUp() {
                     <Input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
+                      placeholder="Email"
                       className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
                       {...register("email")}
                     />
@@ -253,7 +275,7 @@ export default function SignUp() {
                     <Input
                       id="password"
                       type={showPassword ? "text" : "password"}
-                      placeholder="Create a password"
+                      placeholder="Password"
                       className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
                       {...register("password")}
                     />
@@ -281,7 +303,7 @@ export default function SignUp() {
                     <Input
                       id="confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
-                      placeholder="Confirm your password"
+                      placeholder="Confirm Password"
                       className="pl-2.5 h-12 bg-gray-100 border-0 shadow-sm focus:ring-2 focus:ring-amber-400 placeholder:text-black"
                       {...register("confirmPassword")}
                     />
@@ -305,7 +327,6 @@ export default function SignUp() {
                     </p>
                   )}
                 </div>
-
                 <Button
                   type="submit"
                   disabled={isLoading}

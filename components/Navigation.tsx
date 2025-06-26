@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Menu, X, User, LogOut, ChevronDown, Globe, Hotel } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +15,8 @@ import {
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signout } = useAuth();
+  const [currency, setCurrency] = useState("NGN");
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,17 +42,22 @@ export default function Navigation() {
                   className="flex items-center space-x-1 text-gray-700"
                 >
                   <Globe className="h-4 w-4" />
-                  <span>NGN</span>
+                  <span>{currency}</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>NGN - Nigerian Naira</DropdownMenuItem>
-                <DropdownMenuItem>USD - US Dollar</DropdownMenuItem>
-                <DropdownMenuItem>EUR - Euro</DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setCurrency("NGN")}>
+                  NGN - Nigerian Naira
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setCurrency("USD")}>
+                  USD - US Dollar
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setCurrency("EUR")}>
+                  EUR - Euro
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
             {/* Auth Section */}
             {user ? (
               <DropdownMenu>
