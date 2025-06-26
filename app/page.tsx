@@ -22,8 +22,9 @@ import {
   Award,
   Heart,
 } from "lucide-react";
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
+import Navigation from "@/components/Navigation";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -42,6 +43,8 @@ const staggerContainer = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Navigation Bar */}
+      <Navigation />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div
@@ -369,7 +372,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
- 
     </div>
   );
 }

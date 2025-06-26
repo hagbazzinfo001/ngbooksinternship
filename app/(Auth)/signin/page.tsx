@@ -69,10 +69,10 @@ export default function SignIn() {
     "/Swiper4.webp",
     "/Swiper5.webp",
   ];
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [current2Index, setCurrent2Index] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % sliderImages.length);
+      setCurrent2Index((prev) => (prev + 1) % sliderImages.length);
     }, 2500);
 
     return () => clearInterval(interval);
@@ -81,11 +81,11 @@ export default function SignIn() {
     <div className="min-h-screen flex mt-8 mb-12 pt-12 w-[95%] mx-auto  gap-x-14">
       <div className="hidden lg:flex lg:w-[40%] relative rounded-2xl overflow-hidden p-6">
         <Image
-          src={sliderImages[currentIndex]}
+          src={sliderImages[current2Index]}
           alt="Person looking out window at city skyline"
           fill
           className="object-cover rounded-2xl transition-opacity duration-700"
-          key={sliderImages[currentIndex]}
+          key={sliderImages[current2Index]}
           priority
         />
       </div>
